@@ -79,7 +79,7 @@
               type="button"
               [disabled]="checkInCart(product.id)"
             >
-              {{ checkInCart() ? "Add To Cart" : "Already in cart" }}
+              {{ checkInCart(product.id) ? "Add To Cart" : "Already in cart" }}
             </button>
           </div>
         </div>
