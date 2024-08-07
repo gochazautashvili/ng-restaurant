@@ -1,0 +1,67 @@
+<section class="hero">
+  <h1>My Cart</h1>
+</section>
+<h1 *ngIf="!products.length" class="loading">Cart is empty</h1>
+<section class="main container" *ngIf="!!products.length">
+  <h1 class="title">Cart</h1>
+  <h1 *ngIf="isLoading" class="loading">loading...</h1>
+  <div *ngIf="!isLoading" class="table-container">
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let cart of products"
+          [class]="isDeletingId === cart.product.id ? 'deleting' : ''"
+        >
+          <td data-label="Image" class="image">
+            <span (click)="handleDelete(cart.product.id)" class="delete"
+              >X</span
+            >
+            <img
+              [src]="cart.product.image"
+              alt="Product"
+              width="100"
+              height="100"
+            />
+            <span class="name"> {{ cart.product.name }}</span>
+          </td>
+          <td data-label="Quantity">
+            <div class="quantity-controls">
+              <button
+                type="button"
+                class="decrement"
+                (click)="handleDecrement(cart)"
+              >
+                -
+              </button>
+              <span class="qy">{{ cart.quantity }}</span>
+              <button
+                type="button"
+                class="increment"
+                (click)="handleIncrement(cart)"
+              >
+                +
+              </button>
+            </div>
+          </td>
+          <td data-label="Price">$ {{ cart.price }}</td>
+          <td data-label="Total Price">$ {{ cart.price * cart.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="line"></div>
+  <h1 class="total">
+    Total: <span>${{ calculateTotalPriceAndReturn() }}</span>
+  </h1>
+  <button (click)="handleCheckout()" class="checkout" type="button">
+    Proceed to Checkout
+  </button>
+</section>

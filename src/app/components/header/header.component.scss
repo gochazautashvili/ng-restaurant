@@ -1,0 +1,122 @@
+.header {
+  width: 100%;
+  height: 130px;
+  margin-bottom: 40px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+
+  &.scrolled {
+    background-color: rgba(5, 5, 5, 0.8);
+    height: 100px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 6px;
+      background-image: url("https://restaurant.stepprojects.ge/images/hover_bg.png");
+    }
+  }
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+
+    @media (max-width: 600px) {
+      gap: 30px;
+    }
+
+    a {
+      color: white;
+    }
+  }
+}
+
+span {
+  position: relative;
+  background: #ff0000;
+  display: inline-block;
+  line-height: 25px;
+  margin-right: 50px;
+  cursor: pointer;
+
+  padding: 0 10px;
+
+  height: 25px;
+
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 3px;
+  font-size: 14px;
+
+  &:hover {
+    &::before {
+      transform: translateX(15px);
+    }
+  }
+
+  &::before {
+    content: "";
+
+    position: absolute;
+
+    background: url("https://restaurant.stepprojects.ge/images/sprit.png")
+      no-repeat -7px -6px;
+
+    width: 37px;
+
+    height: 26px;
+    top: 0;
+    right: -41px;
+    bottom: 0;
+
+    transition: 500ms ease-in-out;
+  }
+
+  &::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: -7px;
+
+    background: url("https://restaurant.stepprojects.ge/images/sprit.png")
+      no-repeat -7px -36px;
+
+    width: 8px;
+    height: 14px;
+  }
+}
+
+img {
+  cursor: pointer;
+}
+
+.logo {
+  @media (max-width: 600px) {
+    width: 130px;
+    height: 50px;
+  }
+}

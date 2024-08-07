@@ -1,0 +1,214 @@
+$border-color: #ddd;
+$background-color: #f4f4f4;
+$padding: 12px;
+$small-screen-width: 600px;
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 390px;
+  width: 100%;
+
+  background-image: url("https://restaurant.stepprojects.ge/images/inner_banner.jpg");
+  vertical-align: top;
+  overflow: hidden;
+  background-position: top;
+  background-attachment: fixed;
+
+  h1 {
+    font-size: 30px;
+    color: #ffffff;
+    font-weight: 800;
+    text-align: center;
+    text-transform: capitalize;
+    font-family: "Roboto Slab", serif;
+    text-shadow: 0px 0px 26.97px rgba(0, 0, 0, 0.75);
+  }
+}
+
+.main {
+  padding-top: 50px;
+  padding-bottom: 25px;
+
+  .title {
+    font-size: 36px;
+    line-height: 36px;
+    color: #000000;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+}
+
+// table
+
+.table-container {
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid $border-color;
+
+  thead {
+    background-color: $background-color;
+  }
+
+  th,
+  td {
+    padding: $padding;
+    text-align: left;
+    border: 1px solid $border-color;
+  }
+
+  img {
+    max-width: 100px;
+    height: auto;
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+
+    button {
+      background-color: #ccc;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    input {
+      width: 50px;
+      text-align: center;
+      margin: 0 5px;
+      padding: 5px;
+      border: 1px solid $border-color;
+    }
+
+    .increment {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .decrement {
+      background-color: #dc3545;
+      color: white;
+    }
+  }
+
+  @media (max-width: $small-screen-width) {
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    td {
+      display: block;
+      text-align: right;
+      padding-left: 50%;
+      position: relative;
+
+      &::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 10px;
+        font-weight: bold;
+        text-align: left;
+      }
+    }
+  }
+}
+
+.image {
+  display: flex;
+  align-items: start;
+
+  .name {
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+}
+
+.delete {
+  width: 25px;
+  height: 25px;
+
+  background: gray;
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  cursor: pointer;
+}
+
+.deleting {
+  opacity: 0.6;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.line {
+  background-image: url("https://restaurant.stepprojects.ge/images/gray_Hborder.png");
+  width: 100%;
+  height: 6px;
+}
+
+.total {
+  text-align: end;
+  margin-top: 5px;
+
+  span {
+    color: red;
+  }
+}
+
+.checkout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-top: 30px;
+
+  width: 240px;
+  height: 45px;
+
+  background: red;
+  color: white;
+
+  font-size: 18px;
+  font-weight: 900;
+
+  border: none;
+  outline: none;
+
+  transition: all 0.5s;
+  cursor: pointer;
+
+  &:hover {
+    outline: 2px solid red;
+    background: none;
+    color: black;
+  }
+}
+
+.qy {
+  margin: 0 15px;
+}

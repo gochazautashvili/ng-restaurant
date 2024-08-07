@@ -1,0 +1,88 @@
+<section class="hero">
+  <h1>Fast and efficient, online ordering you must try.</h1>
+</section>
+<section class="main container">
+  <h1 class="title">Categories</h1>
+  <ul class="category">
+    <li [class]="!selectedCategoryId ? 'active' : ''">
+      <span (click)="handleSelectCategory(undefined)">All</span>
+    </li>
+    <li
+      [class]="selectedCategoryId === category.id ? 'active' : ''"
+      *ngFor="let category of categories"
+    >
+      <span (click)="handleSelectCategory(category.id)">{{
+        category.name
+      }}</span>
+    </li>
+  </ul>
+  <div class="data">
+    <div class="filter">
+      <div class="top">
+        <p>Filter</p>
+        <span class="O_cart">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-funnel-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"
+            ></path>
+          </svg>
+        </span>
+      </div>
+      <div class="range">
+        <p>Spiciness: {{ spiciness > 0 ? spiciness : "Not Chosen " }}</p>
+        <input
+          [(ngModel)]="spiciness"
+          type="text"
+          type="range"
+          title="Spiciness: Not Chosen"
+          [defaultValue]="0"
+          [max]="4"
+          [min]="0"
+        />
+      </div>
+      <div class="check">
+        <input [(ngModel)]="nuts" id="No Nuts" type="checkbox" title="cheack" />
+        <label for="No Nuts">No Nuts</label>
+      </div>
+      <div class="check">
+        <input
+          [(ngModel)]="vegeterian"
+          id="Vegeterian only"
+          type="checkbox"
+          title="cheack"
+        />
+        <label for="Vegeterian only">Vegeterian only</label>
+      </div>
+      <div class="buttons">
+        <button (click)="handleResetFilter()" type="reset">RESET</button>
+        <button (click)="handleFilterProducts()" type="button">APPLY</button>
+      </div>
+    </div>
+    <div class="products">
+      <div class="card" *ngFor="let product of products">
+        <img [src]="product.image" alt="product" width="250" height="183" />
+        <div class="content">
+          <h1>{{ product.name }}</h1>
+          <p>Spiciness: {{ product.spiciness }}</p>
+          <div class="bottom">
+            <span>$ {{ product.price }}</span>
+            <button
+              (click)="handleAddToBasket(product.price, product.id)"
+              class="addToCart"
+              type="button"
+            >
+              Add To Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
