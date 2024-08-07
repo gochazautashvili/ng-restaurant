@@ -231,6 +231,14 @@
           transition: all 0.5s;
           border-radius: 6px;
 
+          &:disabled {
+            background: gray;
+
+            &:hover {
+              background: gray;
+            }
+          }
+
           &:hover {
             background-color: red;
             color: white;
