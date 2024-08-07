@@ -14,6 +14,7 @@ export class HomeComponent {
   public categories: Category[] = [];
   public products: Product[] = [];
   public cart: TCrat[] = [];
+  private addingInCart = false;
 
   public vegeterian?: boolean;
   public nuts?: boolean;
@@ -31,13 +32,16 @@ export class HomeComponent {
       (item) => item.product.id === productId
     );
 
-    if (alreadyInCart) {
+    if (alreadyInCart || this.addingInCart) {
       alert('This product is already in cart');
       return;
     }
 
+    this.addingInCart = true;
+
     this.productService.addBasket(data).subscribe((res) => {
       this.getCart();
+      this.addingInCart = false;
     });
   }
 
