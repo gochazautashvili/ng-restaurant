@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
-import { Category, Product } from '../../types';
+import { Category, Product, TCrat } from '../../types';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,10 @@ import { Category, Product } from '../../types';
 })
 export class HomeComponent {
   private productService = inject(ProductsService);
+  private cartService = inject(CartService);
   public categories: Category[] = [];
   public products: Product[] = [];
+  public cart: TCrat[] = [];
 
   public vegeterian?: boolean;
   public nuts?: boolean;
@@ -24,7 +27,22 @@ export class HomeComponent {
       productId,
     };
 
-    this.productService.addBasket(data).subscribe((res) => {});
+    const alreadyInCart = this.cart.some(
+      (item) => item.product.id === productId
+    );
+
+    if (alreadyInCart) {
+      alert('This product is already in cart');
+      return;
+    }
+
+    this.productService.addBasket(data).subscribe((res) => {
+      this.getCart();
+    });
+  }
+
+  checkInCart(id: number) {
+    return this.cart.some((item) => item.product.id === id);
   }
 
   handleSelectCategory(id: number | undefined) {
@@ -48,6 +66,13 @@ export class HomeComponent {
   ngOnInit() {
     this.getCategories();
     this.getProducts();
+    this.getCart();
+  }
+
+  getCart() {
+    this.cartService.getCart().subscribe((res) => {
+      this.cart = res;
+    });
   }
 
   getCategories() {

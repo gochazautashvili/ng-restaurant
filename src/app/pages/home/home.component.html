@@ -77,8 +77,9 @@
               (click)="handleAddToBasket(product.price, product.id)"
               class="addToCart"
               type="button"
+              [disabled]="checkInCart()"
             >
-              Add To Cart
+              {{ checkInCart() ? "Add To Cart" : "Already in cart" }}
             </button>
           </div>
         </div>
